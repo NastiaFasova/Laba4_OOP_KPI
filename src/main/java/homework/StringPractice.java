@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class StringPractice {
     private String[] readString(String[] strings) {
-        String regex = "[(\\p{L}|\\p{C}]+";
+        String regex = "^[а-яА-ЯёЁa-zA-Z0-9]+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(String.join(" ", strings));
         if (!matcher.find()) {
