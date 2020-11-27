@@ -5,8 +5,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringPractice {
-    private String[] readString(String[] strings) {
-        String regex = "^[а-яА-ЯёЁa-zA-Z]+$";
+    private String[] strings;
+
+    public StringPractice(String[] strings) {
+        this.strings = strings;
+    }
+
+    private String[] readString() {
+        String regex = "^[а-яА-ЯёЁa-zA-Z-\\s]+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(String.join(" ", strings));
         if (!matcher.find()) {
@@ -15,7 +21,7 @@ public class StringPractice {
         return strings;
     }
 
-    private String findUniqueCharactersStringBuilder(String[] strings) {
+    private String findUniqueCharactersStringBuilder() {
         String joinedString = String.join("", strings);
         String repeatedSymbols = findRepeatedSymbols(joinedString);
         StringBuilder result = new StringBuilder();
@@ -45,10 +51,10 @@ public class StringPractice {
         return repeatedSymbols.toString();
     }
 
-    public void displayOutput(String[] strings) {
-        String[] result = readString(strings);
+    public void displayOutput() {
+        String[] result = readString();
         System.out.println("You entered : " + Arrays.toString(result));
         System.out.println("Number of arguments: " + result.length);
-        System.out.println("Unique symbols: " + findUniqueCharactersStringBuilder(strings));
+        System.out.println("Unique symbols: " + findUniqueCharactersStringBuilder());
     }
 }
